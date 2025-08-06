@@ -6,3 +6,4 @@ runtime:
   name: python
   options:
     toolchain: poetry
+main: src/__main__.py

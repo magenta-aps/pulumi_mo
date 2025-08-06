@@ -17,13 +17,14 @@ services:
       FASTRAMQPI__DATABASE__PASSWORD: "pulumi_mo"
       FASTRAMQPI__DATABASE__HOST: "db"
       FASTRAMQPI__DATABASE__NAME: "pulumi_mo"
+
+      PULUMI_CONFIG_PASSPHRASE: "hunter2"
     volumes:
       - ./pulumi_mo/:/app/pulumi_mo:ro
       - ./tests/:/app/tests/:ro
       # Demo mapping
       - ./docker/entrypoint.sh:/app/entrypoint.sh:ro
-      - ./docker/demo/Pulumi.yaml:/app/Pulumi.yaml:ro
-      - ./docker/demo/__main__.py:/app/__main__.py:ro
+      - ./docker/demo/__main__.py:/app/src/__main__.py:ro
     networks:
       - default
       - os2mo_default
