@@ -39,12 +39,14 @@ class ClassProvider(AutoMOGraphQLProvider):
             "name": name,
             "facet_uuid": news.get("facet"),
             "it_system_uuid": news.get("itsystem"),
+            "scope": news.get("scope", "TEXT")
         }
 
 
 class ClassArgs:
     user_key: Input[str]
     name: Input[str] | None
+    scope: Input[str] | None
 
     facet: Input[str]
     itsystem: Input[str] | None
@@ -55,11 +57,13 @@ class ClassArgs:
         facet: Input[str],
         name: str | None = None,
         itsystem: Input[str] | None = None,
+        scope: Input[str] | None = None,
     ) -> None:
         self.user_key = user_key
         self.name = name
         self.facet = facet
         self.itsystem = itsystem
+        self.scope = scope
 
 
 class Class(Resource, name="Class"):
@@ -69,6 +73,7 @@ class Class(Resource, name="Class"):
             "name": None,
             "facet": None,
             "itsystem": None,
+            "scope": None,
             **vars(args),
         }
         super().__init__(ClassProvider(), name, full_args, opts)
